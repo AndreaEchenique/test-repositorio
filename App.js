@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, Button } from "react-native";
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text styles={styles.title}>Primera App Juntos!</Text>
+      <Text styles={styles.title}>Primera App Juntos! Agregado por Hans</Text>
       <Button style={styles.btn} title="Comenzamos!" />
       <StatusBar style="auto" />
     </View>
