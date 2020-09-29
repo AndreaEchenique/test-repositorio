@@ -8,7 +8,7 @@ export default function App() {
     <View style={styles.container}>
       <Text styles={styles.title}>Primera App Juntos! Agregado por Hans</Text>
       <Image source={require("./img/descarga.jpg")} style={styles.img} />
-      <Button style={styles.btn} title="Comenzamos!" />
+      <Button style={styles.btn} title="Comenzamos!!!!" />
       <StatusBar style="auto" />
     </View>
   );
