@@ -4,12 +4,13 @@ import { Input, Icon, Button, Avatar } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import InfoUser from "../screens/InfoUser";
 
-export default function Registro({ route, props }) {
+export default function Registro({ route }) {
   const [userInfo, setUserInfo] = useState(null);
   const [realoadUserInfo, setRealoadUserInfo] = useState(false);
   const [formData, setFormData] = useState(defaultFormValue());
   const navigation = useNavigation();
-  const { test } = route.params;
+  const { name } = route.params;
+  const { name2 } = route.params;
 
   const onSubmit = () => {
     navigation.navigate("infouser");
@@ -22,6 +23,7 @@ export default function Registro({ route, props }) {
   useEffect(() => {
     setRealoadUserInfo(false);
   }, [realoadUserInfo]);
+  console.log(name);
 
   return (
     <View style={styles.formContainer}>
@@ -31,11 +33,14 @@ export default function Registro({ route, props }) {
         containerStyle={styles.imageAvatar}
         source={require("../img/descarga.jpg")}
       />
-
       <Text style={styles.text}> Registro de Usuario</Text>
       <Text style={styles.text}>
         Este es:
-        {JSON.stringify(test.name)}
+        {JSON.stringify(name)}
+      </Text>
+      <Text style={styles.text}>
+        Este es:
+        {JSON.stringify(name2)}
       </Text>
       <Input
         placeholder="Nombre"
@@ -97,7 +102,6 @@ export default function Registro({ route, props }) {
           />
         }
       />
-
       <Button
         title="Guardar"
         containerStyle={styles.btnContainerRegister}
