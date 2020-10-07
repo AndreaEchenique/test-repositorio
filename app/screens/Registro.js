@@ -9,6 +9,7 @@ export default function Registro({ route, props }) {
   const [realoadUserInfo, setRealoadUserInfo] = useState(false);
   const [formData, setFormData] = useState(defaultFormValue());
   const navigation = useNavigation();
+  /*AGREGADO POR HANS*/
   const { test } = route.params;
 
   const onSubmit = () => {
@@ -31,11 +32,11 @@ export default function Registro({ route, props }) {
         containerStyle={styles.imageAvatar}
         source={require("../img/descarga.jpg")}
       />
-
       <Text style={styles.text}> Registro de Usuario</Text>
+      /*AGREGADO POR HANS*/
       <Text style={styles.text}>
         Este es:
-        {JSON.stringify(test.name)}
+        {JSON.stringify(test)}
       </Text>
       <Input
         placeholder="Nombre"
@@ -97,7 +98,6 @@ export default function Registro({ route, props }) {
           />
         }
       />
-
       <Button
         title="Guardar"
         containerStyle={styles.btnContainerRegister}

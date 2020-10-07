@@ -11,18 +11,15 @@ export default function LoginForm(props) {
   const [realoadRegistro, setRealoadRegistro] = useState(false);
   const [formData, setFormData] = useState(defaultFormValue());
   const navigation = useNavigation();
-
-  const myobj = {
-    name: "",
-    pass: 1234,
-  };
+  /*AGREGADO POR HANS*/
+  const [name2, setName2] = useState();
 
   const onChange = (e, type) => {
     setFormData({ ...formData, [type]: e.nativeEvent.text });
   };
 
   const onSubmit = () => {
-    navigation.navigate("registro", { test: myobj });
+    navigation.navigate("registro", { test: name2 });
   };
 
   useEffect(() => {
@@ -42,7 +39,9 @@ export default function LoginForm(props) {
         placeholder="Nombre "
         ref={name}
         containerStyle={styles.inputForm}
-        onChange={(e) => onChange(e, "name")}
+        /*AGREGADO POR HANS*/
+        onChangeText={(name2) => setName2(name2)}
+        value={name2}
         rightIcon={
           <Icon
             type="material-community"
