@@ -4,16 +4,28 @@ import { Input, Icon, Button, Avatar } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import InfoUser from "../screens/InfoUser";
 
-export default function Registro({ route }) {
+export default function Registro({ route, props }) {
   const [userInfo, setUserInfo] = useState(null);
   const [realoadUserInfo, setRealoadUserInfo] = useState(false);
   const [formData, setFormData] = useState(defaultFormValue());
   const navigation = useNavigation();
-  const { name } = route.params;
-  const { name2 } = route.params;
+  /*AGREGADO POR ANDREA*/
+  const [nombre, setNombre] = useState();
+  const [ap, setAp] = useState();
+  const [direction, setDirection] = useState();
+  const [correo, setCorreo] = useState();
+  const [tlf, setTlf] = useState();
+  /*AGREGADO POR HANS*/
+  const { test } = route.params;
 
   const onSubmit = () => {
-    navigation.navigate("infouser");
+    navigation.navigate("infouser", {
+      test: nombre,
+      ap: ap,
+      dir: direction,
+      correo: correo,
+      tlf: tlf,
+    });
   };
 
   const onChange = (e, type) => {
@@ -23,7 +35,6 @@ export default function Registro({ route }) {
   useEffect(() => {
     setRealoadUserInfo(false);
   }, [realoadUserInfo]);
-  console.log(name);
 
   return (
     <View style={styles.formContainer}>
@@ -34,18 +45,16 @@ export default function Registro({ route }) {
         source={require("../img/descarga.jpg")}
       />
       <Text style={styles.text}> Registro de Usuario</Text>
+
       <Text style={styles.text}>
         Este es:
-        {JSON.stringify(name)}
-      </Text>
-      <Text style={styles.text}>
-        Este es:
-        {JSON.stringify(name2)}
+        {JSON.stringify(test)}
       </Text>
       <Input
         placeholder="Nombre"
         containerStyle={styles.inputForm}
-        onChange={(e) => onChange(e, "name")}
+        onChangeText={(nombre) => setNombre(nombre)}
+        value={nombre}
         rightIcon={
           <Icon
             type="material-community"
@@ -57,7 +66,8 @@ export default function Registro({ route }) {
       <Input
         placeholder="Apellido"
         containerStyle={styles.inputForm}
-        onChange={(e) => onChange(e, "ap")}
+        onChangeText={(ap) => setAp(ap)}
+        value={ap}
         rightIcon={
           <Icon
             type="material-community"
@@ -69,7 +79,8 @@ export default function Registro({ route }) {
       <Input
         placeholder="Dirección"
         containerStyle={styles.inputForm}
-        onChange={(e) => onChange(e, "direction")}
+        onChangeText={(direction) => setDirection(direction)}
+        value={direction}
         rightIcon={
           <Icon
             type="material-community"
@@ -81,7 +92,8 @@ export default function Registro({ route }) {
       <Input
         placeholder="Correo electronico"
         containerStyle={styles.inputForm}
-        onChange={(e) => onChange(e, "email")}
+        onChangeText={(correo) => setCorreo(correo)}
+        value={correo}
         rightIcon={
           <Icon
             type="material-community"
@@ -93,7 +105,8 @@ export default function Registro({ route }) {
       <Input
         placeholder="Teléfono"
         containerStyle={styles.inputForm}
-        onChange={(e) => onChange(e, "phone")}
+        onChangeText={(tlf) => setTlf(tlf)}
+        value={tlf}
         rightIcon={
           <Icon
             type="material-community"
@@ -138,6 +151,9 @@ const styles = StyleSheet.create({
   },
   btnRegister: {
     backgroundColor: "#5A02FF",
+    paddingHorizontal: 30,
+    paddingVertical: 5,
+    borderRadius: 30,
   },
   iconRight: {
     color: "#c1c1c1",

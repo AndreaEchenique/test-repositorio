@@ -3,16 +3,23 @@ import { StyleSheet, View } from "react-native";
 import { Input, Icon, Button, Avatar } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 
-export default function LoginForm() {
+export default function LoginForm(props) {
+  const { toastRef } = props;
+
   const [name, setName] = useState();
+  const [userRegistro, setRegistro] = useState(null);
   const [realoadRegistro, setRealoadRegistro] = useState(false);
   const [formData, setFormData] = useState(defaultFormValue());
   const navigation = useNavigation();
-  var name2 = "hans";
-  this.state = { username: "" };
+  /*AGREGADO POR HANS*/
+  const [name2, setName2] = useState();
+
+  const onChange = (e, type) => {
+    setFormData({ ...formData, [type]: e.nativeEvent.text });
+  };
 
   const onSubmit = () => {
-    navigation.navigate("registro", { name: name, name2: name2 });
+    navigation.navigate("registro", { test: name2 });
   };
 
   useEffect(() => {
@@ -30,9 +37,11 @@ export default function LoginForm() {
 
       <Input
         placeholder="Nombre "
+        ref={name}
         containerStyle={styles.inputForm}
-        value={name}
-        onChangeText={(name) => this.setstate({ name })}
+        /*AGREGADO POR HANS*/
+        onChangeText={(name2) => setName2(name2)}
+        value={name2}
         rightIcon={
           <Icon
             type="material-community"
@@ -86,6 +95,9 @@ const styles = StyleSheet.create({
   },
   btnLogin: {
     backgroundColor: "#5A02FF",
+    paddingHorizontal: 30,
+    paddingVertical: 5,
+    borderRadius: 30,
   },
   iconRight: {
     color: "#c1c1c1",
